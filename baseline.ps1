@@ -53,6 +53,10 @@ else
 {
     Write-Host "Choco is not installed. Attempting to install now..." -ForegroundColor Cyan
     InstallChocolatey
+    
+    Start-Sleep 5
+
+    InstallBaselineAppsViaChoco
 }
 
 # GET INSTALLED / MANAGED PACKAGES
