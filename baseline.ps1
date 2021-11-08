@@ -1,12 +1,29 @@
-if(test-path "C:\ProgramData\chocolatey\choco.exe")
+##############################################
+# FUNCTIONS
+##############################################
+function IsChocolateyInstalled()
+{
+    if(test-path "C:\ProgramData\chocolatey\choco.exe")
+    {
+        return $true
+    }
+    else
+    {
+        return $false
+    }
+}
+
+function InstallChocolatey()
 {
     write-host "Choco is installed!" -ForegroundColor Green
-    
+
+    # https://chocolatey.org/docs/installation
+    Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+}
+
+function InstallBaselineAppsViaChoco()
+{
     Write-Host "Installing baseline apps now..." -ForegroundColor Cyan
-    
-    # GET INSTALLED / MANAGED PACKAGES
-    choco list --localonly 
-    choco outdated
 
     # EVERYONE
     choco upgrade adobereader -y
@@ -15,15 +32,31 @@ if(test-path "C:\ProgramData\chocolatey\choco.exe")
     choco upgrade microsoft-edge -y
 
     # Dell workstations
-    choco upgrade dellcommandupdate -y   
+    choco upgrade dellcommandupdate -y 
+}
+
+##############################################
+# VARIABLES
+##############################################
+
+
+##############################################
+# MAIN
+##############################################
+
+if (IsChocolateyInstalled)
+{
+    write-host "Choco is installed!" -ForegroundColor Green
+    InstallBaselineAppsViaChoco
 }
 else
 {
     Write-Host "Choco is not installed. Attempting to install now..." -ForegroundColor Cyan
-    # https://chocolatey.org/docs/installation
-    Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+    InstallChocolatey
 }
 
+# GET INSTALLED / MANAGED PACKAGES
+choco list --localonly 
+choco outdated
 # LOG
 #C:\ProgramData\chocolatey\logs\chocolatey.log
-
