@@ -25,14 +25,14 @@ function InstallBaselineAppsViaChoco()
 {
     Write-Host "Installing baseline apps now..." -ForegroundColor Cyan
 
+    # Dell workstations
+    choco upgrade dellcommandupdate -y 
+    
     # EVERYONE
     choco upgrade adobereader -y
     choco upgrade googlechrome -y
     choco upgrade 7zip -y
     choco upgrade microsoft-edge -y
-
-    # Dell workstations
-    choco upgrade dellcommandupdate -y 
 }
 
 ##############################################
