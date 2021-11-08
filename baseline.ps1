@@ -60,7 +60,8 @@ else
 }
 
 # GET INSTALLED / MANAGED PACKAGES
-choco list --localonly 
+#choco list --localonly 
+choco list -lo --include-programs
 choco outdated
 # LOG
 #C:\ProgramData\chocolatey\logs\chocolatey.log
