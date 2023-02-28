@@ -1,4 +1,5 @@
-$M365Packages = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where {$_.DisplayName -like "*Microsoft 365*"} 
+#$M365Packages = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where {$_.DisplayName -like "*Microsoft 365*"} 
+$M365Packages = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where {$_.DisplayName -like "*Microsoft 365 - *"} 
 if ($M365Packages.Count -gt 1) 
 { 
     write-host "Starting Uninstallation..." -ForegroundColor Cyan 
