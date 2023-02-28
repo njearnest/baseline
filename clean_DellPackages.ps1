@@ -2,6 +2,8 @@ get-package "*Dell SupportAssist*" | Uninstall-Package
 #get-package "*Dell Command*" | Uninstall-Package
 get-package "*Dell Power*" | Uninstall-Package
 get-package "*Dell Digital*" | Uninstall-Package
+get-package "*Dell Display*" | Uninstall-Package
+get-package "*Dell Peripheral*" | Uninstall-Package
 
 #REMOVE REMNANTS THAT ARE OLD SCHOOL PROGRAMS
 $DellPackages = Get-ItemProperty HKLM:\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Where {$_.DisplayName -like "*Dell SupportAssist*"} 
