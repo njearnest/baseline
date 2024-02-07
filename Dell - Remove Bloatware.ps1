@@ -169,8 +169,7 @@ if ($manufacturer -like "*Dell*")
     }
 
     # Remove installed programs
-    $InstalledPrograms | ForEach-Object 
-    {
+    $InstalledPrograms | ForEach-Object {
         Write-Host -Object "Attempting to uninstall: [$($_.Name)]..."
         $uninstallcommand = $_.String
 
